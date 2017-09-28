@@ -1,0 +1,116 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+{% block javascripts %}
+
+{{ parent() }}
+
+   
+    <script type="text/javascript">
+		$(document).ready(function(e) {
+		
+			var production = $('.production').val();
+			switch (production) {
+                case 'dunesafari':
+                case 'dunetravel':
+                case 'suboceatravel':
+                case 'suboceasafari':
+		        	$(".boat").parent().parent().hide();
+                    break;
+                case 'dunecruise':
+                case 'suboceacruise':
+		        	$(".accommodation").parent().parent().hide();
+                    break;
+            };
+		
+		
+			console.log(' **** ready ****');
+			var optionsLength = $('.option-list li').length;
+			console.log(' **** optionsLength ****');
+			console.log(optionsLength-2);
+			var eachOption = optionsLength-2;
+			
+			var values = '';
+ 
+			$('.option-list li').each(function() { values += $(this).text()+';'; });
+			values = values.replace(/ /g,"");
+			var tableauValues=values.split(';')
+			console.log(' **** values ****');
+			console.log(tableauValues);
+			
+			
+			
+			
+			
+			var url = '{{ url("option_search", {'optionNb':'optionNb', 'optionVal':'optionVal'}) }}';
+            url = url.replace('optionNb', eachOption).replace('optionVal', tableauValues);
+            console.log('url');
+            console.log(url);
+            $.ajax({
+                url: url,
+                success: function(response){
+                    response=response.replace(/\[/g,'');
+                    response=response.replace(/\]/g,'');
+                    response=response.replace(/\"/g,'');
+					var tabOptions=response.split(';');
+                    $('.option-list li').remove();
+					for (var i=0; i<eachOption; i++) {
+					    var option = tabOptions[i].split('#');
+					    var idOption = option[0].replace(/\,/g,'');
+					    
+					    if (option[2] == 1)
+						{
+							var check = 'checked="checked"';
+						}
+						else
+						{
+							var check = '';
+						}
+						
+	                	$(".option-list").children(".select2-choices").prepend('<li class="select2-search-choice '+idOption+'">'+option[1]+'&nbsp;&nbsp;<input onClick="checkOption('+idOption+')" type="checkbox" '+check+' id="'+idOption+'" value="'+idOption+'"></li>');
+					    
+					}
+                }
+            })
+		});
+		
+		function checkOption(idOption) {
+		
+			console.log(' idOption nameOption idOption nameOption ');
+			console.log(idOption);
+			var url = '{{ url("option_check", {'idOption':'idOption'}) }}';
+            url = url.replace('idOption', idOption);
+            console.log('url');
+            console.log(url);
+            $.ajax({
+                url: url,
+                success: function(response){
+                    response=response.replace(/\[/g,'');
+                    response=response.replace(/\]/g,'');
+                    response=response.replace(/\"/g,'');
+					var tab=response.split(';');
+                    console.log(response);
+					console.log(idOption);
+                    	if (tab[1] == 1)
+						{
+							var check = 'checked="checked"';
+						}
+						else
+						{
+							var check = '';
+						}
+						var elem = document.getElementById(idOption);
+						elem.parentNode.remove(elem);
+						
+                    	$(".option-list").children(".select2-choices").append('<li class="select2-search-choice '+idOption+'">'+tab[0]+' &nbsp;&nbsp;<input onClick="checkOption('+idOption+')" type="checkbox" '+check+' id="'+idOption+'" value="'+idOption+'"></li>');
+                }
+            })
+		
+		}
+		
+		
+	</script>
+{% endblock %}
+    
+  
+
+
+

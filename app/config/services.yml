@@ -1,0 +1,41 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    #service_name:
+    #    class: AppBundle\Directory\ClassName
+    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    admin.first:
+        class: BackOfficeBundle\Admin\FirstAdmin
+        arguments: [~, BackOfficeBundle\Entity\First, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Ap Architecture", label: L'agencee, icon: "<i class=\"fa fa-map\"></i>" }
+    admin.second:
+        class: BackOfficeBundle\Admin\SecondAdmin
+        arguments: [~, BackOfficeBundle\Entity\Second, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Ap Architecture", label: Pourquoi, icon: "<i class=\"fa fa-map\"></i>" }
+    admin.third:
+        class: BackOfficeBundle\Admin\ThirdAdmin
+        arguments: [~, BackOfficeBundle\Entity\Third, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Ap Architecture", label: Missions, icon: "<i class=\"fa fa-map\"></i>" }
+    admin.fourth:
+        class: BackOfficeBundle\Admin\FourthAdmin
+        arguments: [~, BackOfficeBundle\Entity\Fourth, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Ap Architecture", label: Réalisations, icon: "<i class=\"fa fa-map\"></i>" }
+    admin.slide:
+        class: BackOfficeBundle\Admin\SlideAdmin
+        arguments: [~, BackOfficeBundle\Entity\Slide, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Sliders", label: Slide, icon: "<i class=\"fa fa-caret-square-o-right\"></i>" }
+        calls:
+            - [ setTemplate, [edit, BackOfficeBundle::slideedit.html.twig]]   
+    admin.slider:
+        class: BackOfficeBundle\Admin\SliderAdmin
+        arguments: [~, BackOfficeBundle\Entity\Slider, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Sliders", label: Slider, icon: "<i class=\"fa fa-caret-square-o-right\"></i>" }

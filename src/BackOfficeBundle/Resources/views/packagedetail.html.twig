@@ -1,0 +1,119 @@
+{% extends "BackOfficeBundle::layout.html.twig" %}
+
+
+{% block body %}
+
+<br/>
+
+    	<p style="width:100%; text-align: center"><a style="text-align:center" href="{{  path('package_list') }}" >Packages</a></p>
+    	
+    	<p style="width:100%; text-align: center"><a style="text-align:center" href="{{  path('accommodation_list') }}" >Hebergements</a></p>
+    	
+    	<p style="width:100%; text-align: center"><a style="text-align:center" href="{{  path('diving_center_list') }}" >Centres de plongées</a></p>
+    	
+    	<p style="width:100%; text-align: center"><a style="text-align:center" href="{{  path('boat_list') }}" >Bateaux</a></p>
+  
+
+<div class="container">
+	<table id="packagedetail" class="display">
+		<thead>	
+			<tr>
+				<th>Nom marketing</th>
+				<th>Id surfprice</th>
+				<th>hebergement</th>
+				<th>Pays</th>
+				<th>Options</th>
+				<th>Centres de plongées</th>
+				<th>Infos</th>
+				<th>Assurances</th>
+				<th>Prestation</th>
+			</tr>
+		</thead>
+        <tbody>
+			{% if package is defined %}
+		        <tr>
+            		<td>{{ package.name }}</td>
+            		<td>{{ package.surfpriceId }}</td>
+            		<td><a href="{{ path('accommodation_detail', { 'id': package.accommodation.surfpriceId }) }}">{{ package.accommodation.name }}</a></td>
+            		<td>{{ package.country.name }}</td>
+            		<td>
+            			{% if package.options is defined %}
+                        		{% for option in package.options %}
+                        		{{ option.name }}<br/>
+                        		{% endfor %}
+						{% endif %}
+                    </td>
+            		<td>
+            			{% if package.divingCenters is defined %}
+                        		{% for divingCenter in package.divingCenters %}
+                        		<a href="{{ path('accommodation_detail', { 'id': package.accommodation.surfpriceId }) }}">{{ divingCenter.name }}</a><br/>
+                        		{% endfor %}
+						{% endif %}
+                    </td>
+            		<td>
+            			{% if package.infos is defined %}
+                        		{% for info in package.infos %}
+                        		{{ info.description }}<br/>
+                        		{% endfor %}
+						{% endif %}
+                    </td>
+            		<td>
+            			{% if package.insurances is defined %}
+                        		{% for insurance in package.insurances %}
+                        		{{ insurance.description }}<br/>
+                        		{% endfor %}
+						{% endif %}
+                    </td>
+            		<td>
+            			{% if package.providers is defined %}
+                        		{% for provider in package.providers %}
+                        		{{ provider.name }}<br/>
+                        		{% endfor %}
+						{% endif %}
+                    </td>
+            	</tr>      	
+        	
+			{% else %}
+				<tr>
+					<td>Aucune donnée</td>
+					<td>Aucune donnée</td>
+					<td>Aucune donnée</td>
+					<td>Aucune donnée</td>
+					<td>Aucune donnée</td>
+					<td>Aucune donnée</td>
+					<td>Aucune donnée</td>
+				</tr>
+			{% endif %}
+ 		</tbody>
+	</table>
+</div>
+   
+<script type="text/javascript">
+	$(document).ready( function () {
+	    $('#packagedetail').DataTable({
+	    "language": {
+	    "sProcessing":     "Traitement en cours...",
+	    "sSearch":         "Rechercher&nbsp;:",
+	    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+	    "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+	    "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+	    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+	    "sInfoPostFix":    "",
+	    "sLoadingRecords": "Chargement en cours...",
+	    "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+	    "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+	    "oPaginate": {
+	        "sFirst":      "Premier",
+	        "sPrevious":   "Pr&eacute;c&eacute;dent",
+	        "sNext":       "Suivant",
+	        "sLast":       "Dernier"
+	    },
+	    "oAria": {
+	        "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+	        "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+	    }
+	    }
+	    }); 
+	} );
+</script> 
+{% endblock %}

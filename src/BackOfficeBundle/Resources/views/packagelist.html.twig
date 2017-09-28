@@ -1,0 +1,82 @@
+{% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
+{% block list_header %}
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('.sonata-filters-box').css('display', 'block');
+            $('.spotsearch').parent().parent().css('display', 'block');
+            $('.productionsearch').parent().parent().css('display', 'block');
+            
+            $('#s2id_autogen8').hide();
+        });
+
+        $('.productionsearch').change(function(){
+
+            var production = $('#filter_production_value').val();
+
+            console.log('production');
+            console.log(production);
+            
+            var url = '{{ url("prod_search", {'production':'production'}) }}';
+            url = url.replace('production', production);
+            
+            $.ajax({
+                url: url,
+                success: function(spots){
+                    console.log('spots');
+                    console.log(spots);
+
+                    var values = '';
+
+                    $('#filter_spot_value option').each(function() {
+                        var ok = 0;
+                    	for (var spot in spots) {
+ 
+                            if($(this).val() == spot[1])
+                            {
+                                var ok = 1;
+                            }
+                        }
+                        if( ok == 0)
+                        {
+                            $(this).hide();
+                        }
+                    });
+
+                }
+            })
+            
+            
+            
+            
+            switch(production) {
+			    case 'dunesafari':
+			    	console.log("Créer safari.");
+			        $('select[name="action"]').val('createSafari');
+			        var textbtn = 'Créer safari'; 
+			        break;
+			    case 'dunetravel':
+			    case 'suboceatravel':
+			    	console.log("Créer séjour.");
+			        $('select[name="action"]').val('createTravel');
+			        var textbtn = 'Créer séjour';
+			        break;
+			    case 'suboceacruise':
+			    case 'dunecruise':
+			    	console.log("Créer croisière.");
+			        $('select[name="action"]').val('createCruise');
+			        var textbtn = 'Créer croisière';
+			        break;
+			    default:
+			        var textbtn = 'Erreur Merci de modifer votre choix'
+			}
+            $('.btn-primary').val(textbtn);
+            
+        });
+    </script>
+{% endblock %}
+
+
+
+
+
+

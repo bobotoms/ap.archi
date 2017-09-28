@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="SonataAdminBundle.en.xliff">
+        <body>
+            <trans-unit id="Map List">
+                <source>Map List</source>
+                <target>Liste des marqueurs</target>
+            </trans-unit>
+            <trans-unit id="Map">
+                <source>Map</source>
+                <target>Marqueurs</target>
+            </trans-unit>
+            <trans-unit id="Name">
+                <source>Name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="Map Create">
+                <source>Map Create</source>
+                <target>Création marqueur</target>
+            </trans-unit>
+            <trans-unit id="Content">
+                <source>Content</source>
+                <target>Formulaire</target>
+            </trans-unit>
+            <trans-unit id="NameMapType">
+                <source>NameMapType</source>
+                <target>Itinéraire</target>
+            </trans-unit>
+            <trans-unit id="Name Map Type">
+                <source>Name Map Type</source>
+                <target>Nom itinéraire</target>
+            </trans-unit>
+            <trans-unit id="Marker Type">
+                <source>Marker Type</source>
+                <target>Type de marqueur</target>
+            </trans-unit>
+            <trans-unit id="Markers">
+                <source>Markers</source>
+                <target>Marqueurs</target>
+            </trans-unit>
+            <trans-unit id="Name Map Type List">
+                <source>Name Map Type List</source>
+                <target>Liste des itinéraires</target>
+            </trans-unit>
+            <trans-unit id="Name Map Type Create">
+                <source>Name Map Type Create</source>
+                <target>Création des itinéraires</target>
+            </trans-unit>
+            <trans-unit id="Destination">
+                <source>Destination</source>
+                <target>Destination</target>
+            </trans-unit>
+            <trans-unit id="Destination List">
+                <source>Destination List</source>
+                <target>Liste des destinations</target>
+            </trans-unit>
+            <trans-unit id="Add new">
+                <source>Add new</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="Destination Create">
+                <source>Destination Create</source>
+                <target>Création destination</target>
+            </trans-unit>
+            <trans-unit id="SubDestination">
+                <source>SubDestination</source>
+                <target>Sous destination</target>
+            </trans-unit>
+            <trans-unit id="Sub Destination">
+                <source>Sub Destination</source>
+                <target>Sous destination</target>
+            </trans-unit>
+            <trans-unit id="Sub Destination List">
+                <source>Sub Destination List</source>
+                <target>Liste sous destination</target>
+            </trans-unit>
+            <trans-unit id="Sub Link">
+                <source>Sub Link</source>
+                <target>Lien sous zone</target>
+            </trans-unit>
+            <trans-unit id="SubDestination List">
+                <source>SubDestination List</source>
+                <target>Liste des sous destination</target>
+            </trans-unit>
+            <trans-unit id="Sub Destination Create">
+                <source>Sub Destination Create</source>
+                <target>Création sous destination</target>
+            </trans-unit>
+            <trans-unit id="Sub Zone">
+                <source>Sub Zone</source>
+                <target>Sous zone</target>
+            </trans-unit>
+            <trans-unit id="Link Cat">
+                <source>Link Cat</source>
+                <target>Lien zone</target>
+            </trans-unit>
+            <trans-unit id="default">
+                <source>default</source>
+                <target>Admin</target>
+            </trans-unit>
+            <trans-unit id="Fee">
+                <source>Fee</source>
+                <target>Frais</target>
+            </trans-unit>
+            <trans-unit id="form.label_author_name">
+                <source>form.label_author_name</source>
+                <target>Lègende</target>
+            </trans-unit>
+            <trans-unit id="label.author">
+                <source>label.author</source>
+                <target>Lègende</target>
+            </trans-unit>
+            <trans-unit id="label.author_name">
+                <source>label.author_name</source>
+                <target>Lègende</target>
+            </trans-unit>
+            <trans-unit id="Fees">
+                <source>Fees</source>
+                <target>Frais</target>
+            </trans-unit>
+            <trans-unit id="AuthorName">
+                <source>AuthorName</source>
+                <target>Légende</target>
+            </trans-unit>
+            <trans-unit id="Travel">
+                <source>Travel</source>
+                <target>Séjour</target>
+            </trans-unit>
+            <trans-unit id="IncludedOption">
+                <source>IncludedOption</source>
+                <target>Options incluses</target>
+            </trans-unit>
+            <trans-unit id="IncludedRate">
+                <source>IncludedRate</source>
+                <target>Taux inclus</target>
+            </trans-unit>
+            <trans-unit id="Included Option">
+                <source>Included Option</source>
+                <target>Options incluses</target>
+            </trans-unit>
+            <trans-unit id="Included Rate">
+                <source>Included Rate</source>
+                <target>Taux inclus</target>
+            </trans-unit>
+            <trans-unit id="Area">
+                <source>Area</source>
+                <target>Zones</target>
+            </trans-unit>
+            <trans-unit id="Spot">
+                <source>Spot</source>
+                <target>Spots</target>
+            </trans-unit>
+            <trans-unit id="Place">
+                <source>Place</source>
+                <target>Spot</target>
+            </trans-unit>
+            <trans-unit id="DivingCenterOption">
+                <source>DivingCenterOption</source>
+                <target>Option centre de plongée</target>
+            </trans-unit>
+            <trans-unit id="Country">
+                <source>Country</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="Species">
+                <source>Species</source>
+                <target>Espèce</target>
+            </trans-unit>
+            <trans-unit id="Quotation">
+                <source>Quotation</source>
+                <target>Devis</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

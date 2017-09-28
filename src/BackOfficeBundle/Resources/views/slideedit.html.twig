@@ -1,0 +1,91 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+{% block javascripts %}
+
+
+    {{ parent() }}
+
+  
+    <script type="text/javascript">
+        $(document).ready( function () {
+			type();
+			
+			$(".typeslide").click(function() { 
+			    type();
+		    });
+		    
+		    $(".btn-success").click(function() { 
+	            console.log(' erreur erreur erreur erreur erreur ');
+			    if($( ".typeslide" ).find( ".select2-chosen" ).text() == '')
+	            {
+	            console.log(' erreur2 erreur2 erreur2 erreur2 erreur2 ');
+//					$(".typeslide").addClass('invalid');
+//					$('.typeslide test').slideDown(300);
+//					$(".typeslide").target("Entrez une adresse valide. Exemple : contact@nom.com");
+//					$(".typeslide").attr("placeholder", "New placeholder text").val("").focus().blur();
+	//					$( ".typeslide" ).val('erreur erreur');
+	//					$( ".typeslide" ).find( ".select2-focusser" ).val('erreur erreur');
+						$(".typeslide").find( ".select2-choice" ).attr("placeholder", "New placeholder text");
+						$(".typeslide").attr("placeholder", "New placeholder text");
+						$(".typeslide label").val("New placeholder text");
+	            console.log(' erreur3 erreur3 erreur3 erreur3 erreur3 ');
+	            
+	//			alert("Vous avez oublié de remplir un champ. Merci de recommencer");
+	            console.log(' erreur4 erreur4 erreur4 erreur4 erreur4 ');
+			        
+	            }
+	            else if($( ".typeslide" ).find( ".select2-chosen" ).text() == 'Image')
+	            {
+			        $(".pictureSlide").parent().parent().parent().parent().show();
+			        $(".webmSlide").parent().parent().parent().parent().hide();
+			        $(".mpfourSlide").parent().parent().parent().parent().hide();
+					$(".webmSlide").prop('required',false);
+					$(".mpfourSlide").prop('required',false);
+					$(".pictureSlide").prop('required',true);
+	            }
+	            else
+	            {
+			        $(".pictureSlide").parent().parent().parent().parent().hide();
+			        $(".webmSlide").parent().parent().parent().parent().show();
+			        $(".mpfourSlide").parent().parent().parent().parent().show();
+					$(".pictureSlide").prop('required',false);
+					$(".webmSlide").prop('required',true);
+					$(".mpfourSlide").prop('required',true);
+	            }
+		    });
+		   
+		});
+		
+		function type()
+		{
+            if($( ".typeslide" ).find( ".select2-chosen" ).text() == '')
+            {
+		        $(".pictureSlide").parent().parent().parent().parent().hide();
+		        $(".webmSlide").parent().parent().parent().parent().hide();
+		        $('.mpfourSlide').parent().parent().parent().parent().hide();
+				$(".pictureSlide").prop('required',true);
+				$(".webmSlide").prop('required',true);
+				$(".mpfourSlide").prop('required',true);
+            }
+            else if($( ".typeslide" ).find( ".select2-chosen" ).text() == 'Image')
+            {
+		        $(".pictureSlide").parent().parent().parent().parent().show();
+		        $(".webmSlide").parent().parent().parent().parent().hide();
+		        $(".mpfourSlide").parent().parent().parent().parent().hide();
+				$(".webmSlide").prop('required',false);
+				$(".mpfourSlide").prop('required',false);
+				$(".pictureSlide").prop('required',true);
+            }
+            else
+            {
+		        $(".pictureSlide").parent().parent().parent().parent().hide();
+		        $(".webmSlide").parent().parent().parent().parent().show();
+		        $(".mpfourSlide").parent().parent().parent().parent().show();
+				$(".pictureSlide").prop('required',false);
+				$(".webmSlide").prop('required',true);
+				$(".mpfourSlide").prop('required',true);
+            }
+        }
+    </script>
+
+
+{% endblock %}

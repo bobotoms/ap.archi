@@ -1,0 +1,365 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+{% block javascripts %}
+
+
+    {{ parent() }}
+    <script type="text/javascript">
+		var $ = $.noConflict(true);
+	</script>
+    <script type="text/javascript" charset="utf8" src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAOXT4bZLqvV_AVNpE4BOxgE_qrsjoj_Bo">
+    </script>
+    <script type="text/javascript">
+		var jq1 = $.noConflict(true);
+	</script>
+
+  
+    <script type="text/javascript">
+        jq1(document).ready( function () {
+        	jq1(".mapMarker").parent().parent().parent().parent().hide();
+        	jq1(".mapIti").parent().parent().parent().parent().hide();
+
+			gTypeMap()
+
+            jq1(".typeMap").click(function() {
+                gTypeMap()
+            });
+
+            jq1(".mapMarker" ).click(function() {
+                gMapMarker();
+            });
+
+            jq1(".mapIti" ).click(function() {
+                gMapIti();
+            });
+        })
+
+		function gTypeMap()
+		{
+			if(jq1(".typeMap").val() == 'null')
+                {
+		        	jq1(".mapMarker").parent().parent().parent().parent().hide();
+		        	jq1(".mapIti").parent().parent().parent().parent().hide();
+		        	jq1('.mapMarker').val('');
+		        	jq1('.mapIti').val('');
+                }
+                else if(jq1(".typeMap").val() == 'markers')
+                {
+        			jq1(".mapMarker").parent().parent().parent().parent().show();	
+        			jq1(".mapIti").parent().parent().parent().parent().hide();
+		        	jq1('.mapIti').val('');
+                	gMapMarker();
+                }
+                else
+                {
+        			jq1(".mapIti").parent().parent().parent().parent().show();
+        			jq1(".mapMarker").parent().parent().parent().parent().hide();
+		        	jq1('.mapMarker').val('');
+                	gMapIti();
+                }
+		}
+
+		function gMapMarker() {
+
+            console.log('mapMarker');
+            console.log(jq1('.mapMarker').val().length);
+            markers = jq1('.mapMarker').val();
+        
+            markers = jq1('.mapMarker').val();
+
+            console.log('mapMarker2');
+            console.log(typeof(markers));
+            
+            console.log('nameIti');
+            console.log(typeof(nameIti));
+            
+            var url = '{{ url("marker_search", {'markers':'markers'}) }}';
+            url = url.replace('markers', markers);
+            console.log('url');
+            console.log(url);
+            $.ajax({
+                url: url,
+                success: function(response){
+                    response=response.replace(/\[/g,'');
+                    response=response.replace(/\]/g,'');
+                    response=response.replace(/\"/g,'');
+
+                    var markersArray = response.split(',');
+
+					/*    On centre la carte sur les première coordonnèes */
+					var infosCenter = markersArray[0].split(';');
+					var latCenter = infosCenter[0];
+	                var lngCenter = infosCenter[1];
+	               
+					var latlng = new google.maps.LatLng(latCenter,lngCenter);
+		            var map = new google.maps.Map(document.getElementById('gmap'),{
+		                zoom : 4,
+		                center: latlng,
+		                mapTypeId:  google.maps.MapTypeId.ROADMAP
+		            });
+					/*    FIN On centre la carte sur les première coordonnèes */
+
+		            console.log('markersArray.length');
+		            console.log(markersArray.length);
+		            for(var i= 0; i < markersArray.length; i++)
+		            {
+		
+		                console.log('i');
+		                console.log(i);
+		                console.log('********************FOR*******************');
+		                var infos = markersArray[i].split(';');
+		                var lat = infos[0];
+		                console.log('lat');
+		                console.log(lat);
+		                var lng = infos[1];
+		                console.log('lng');
+		                console.log(lng);
+		                var type = infos[2]
+		                console.log('type');
+		                console.log(type);
+		                var name = infos[3]
+		                console.log('name');
+		                console.log(name);
+		                var desc = infos[4]
+		                console.log('desc');
+		                console.log(desc);
+		
+		                
+		                var icon = '';
+		                console.log('icon');
+		                console.log(icon);
+		                switch (type) {
+		                    case 'accommodation':
+		                        icon = '{{ asset('bundles/frontoffice/images/hostel.png') }}'
+		                        break;
+		                    case 'divingcenter':
+		                        icon = '{{ asset('bundles/frontoffice/images/scubadiving.png') }}'
+		                        break;
+		                    case 'boat':
+		                        icon = '{{ asset('bundles/frontoffice/images/boat.png') }}'
+		                        break;
+		                    case 'restaurant':
+		                        icon = '{{ asset('bundles/frontoffice/images/restaurant.png') }}'
+		                        break;
+		                    case 'country':
+		                        icon = '{{ asset('bundles/frontoffice/images/country.png') }}'
+		                        break;
+		                    default:
+		                        icon = '{{ asset('bundles/frontoffice/images/direction.png') }}'
+		                }
+		                ;
+						var infoWindow = new google.maps.InfoWindow();
+		                var marker = new google.maps.Marker({
+		                    position: new google.maps.LatLng(lat,lng),
+		                    icon: icon,
+		                    map: map,
+		                    draggable: false,
+		                    animation: google.maps.Animation.DROP,
+		                    title: name
+		                });
+						google.maps.event.addListener(marker,'click', (
+							function(marker,desc,infoWindow){
+							return function() {
+								infoWindow.close();
+								infoWindow.setContent(desc);
+								infoWindow.open(map,marker);
+							};
+						})(marker,desc,infoWindow));  
+		                
+                    }
+                }
+            })            
+        };
+
+		function gMapIti() {
+
+            
+            
+            console.log('mapIti');
+            idIti = jq1('.mapIti').val();
+        
+            console.log('idIti');
+            console.log(idIti);
+            
+            var url = '{{ url("nameiti_search", {'idIti':'idIti'}) }}';
+            url = url.replace('idIti', idIti);
+            console.log('url');
+            console.log(url);
+            $.ajax({
+                url: url,
+                success: function(response){
+
+                    console.log('******************** gItis *******************');
+
+                    console.log(response);
+                    
+                    response=response.replace(/\[/g,'');
+                    response=response.replace(/\]/g,'');
+                    response=response.replace(/\"/g,'');
+
+                    console.log('******************** gItis *******************');
+            
+			        var ItisMarkers = response.split(',');
+			
+			        /*    On centre la carte sur les première coordonnèes */
+					var infosCenter = ItisMarkers[0].split(';');
+					var latCenter = infosCenter[0];
+	                var lngCenter = infosCenter[1];
+	               
+					var latlng = new google.maps.LatLng(latCenter,lngCenter);
+		            var map = new google.maps.Map(document.getElementById('gmap'),{
+		                zoom : 4,
+		                center: latlng,
+		                mapTypeId:  google.maps.MapTypeId.ROADMAP
+		            });
+					/*    FIN On centre la carte sur les première coordonnèes */
+			       
+			        wayPointArray = new Array();
+			        
+		            console.log('ItisMarkers');
+		            console.log(ItisMarkers);
+		            console.log(ItisMarkers.length);
+		
+		            for(var k= 0; k < ItisMarkers.length; k++)
+		            {
+		
+		
+			            console.log(' *********** ItisMarkers[k] **********');
+			            console.log(ItisMarkers[k]);
+		                ItisMarkers[k]=ItisMarkers[k].replace(/\//g,'');
+		                ItisMarkers[k]=ItisMarkers[k].replace(/\\/g,'');
+		
+		                var infos = ItisMarkers[k].split(';');
+		                var lat = infos[0];
+		                console.log('lat iti');
+		                console.log(lat);
+		                var lng = infos[1];
+		                console.log('lng iti');
+		                console.log(lng);
+		                var type = infos[2]
+		                console.log('type iti');
+		                console.log(type);
+		                var desc = infos[3]
+		
+		                var infoWindow = new google.maps.InfoWindow();
+		                var icon = '';
+		                console.log('icon');
+		                console.log(icon);
+		                switch (type) {
+		                    case 'accommodation':
+		                        icon = '{{ asset('bundles/frontoffice/images/hostel.png') }}'
+		                        break;
+		                    case 'divingcenter':
+		                        icon = '{{ asset('bundles/frontoffice/images/scubadiving.png') }}'
+		                        break;
+		                    case 'boat':
+		                        icon = '{{ asset('bundles/frontoffice/images/boat.png') }}'
+		                        break;
+		                    case 'restaurant':
+		                        icon = '{{ asset('bundles/frontoffice/images/restaurant.png') }}'
+		                        break;
+		                    case 'country':
+		                        icon = '{{ asset('bundles/frontoffice/images/country.png') }}'
+		                        break;
+		                    default:
+		                        icon = '{{ asset('bundles/frontoffice/images/direction.png') }}'
+		                };
+		
+		                var marker = new google.maps.Marker({
+		                    position: new google.maps.LatLng(lat,lng),
+		                    icon: icon,
+		                    map: map,
+		                    draggable: false,
+		                    animation: google.maps.Animation.DROP,
+		                    title: 'Title'
+		                });
+		                google.maps.event.addListener(marker, "click", function() {
+		
+		                    infoWindow.close();
+		                    infoWindow.setContent(
+		                        '<div id="content"> '+desc+' </div>'
+		                    );
+		                    infoWindow.open(map, this);
+		                });
+		
+		                if (k == 0)
+		                {
+		                    console.log('**** dans if ****')
+		                    var first = new google.maps.LatLng(lat,lng)
+		                }
+		                else if (k == ItisMarkers.length-1)
+		                {
+		                    console.log('**** dans else if****')
+		                    var last = new google.maps.LatLng(lat,lng)
+	                console.log(' ***  ** last **  ***');
+	                console.log(last);
+		                }
+		                else
+		                {
+		                    console.log('**** dans else ****')
+		                    var waypoint = new google.maps.LatLng(lat,lng);
+	                console.log(' *** ** waypoint ** ***');
+	                console.log(waypoint);
+		                    wayPointArray.push({location: waypoint, stopover: true}) 
+		                    console.log(' ***  wayPointArray length ***');
+	                		console.log(wayPointArray.length);
+		                    
+		                }
+		
+					}
+						
+	                console.log(' *** ** ** ** wayPointArray ** ** ** ***');
+	                console.log(wayPointArray);
+	                console.log('directionsDisplay');
+	                directionsDisplay = new google.maps.DirectionsRenderer();
+	
+	                console.log(directionsDisplay);
+	
+	                directionsDisplay.setMap(map);
+	
+	                console.log('directionsDisplay Map');
+	                //           function calcRoute() {
+	
+	                console.log('calcRoute');
+	                current_pos = first;
+	                console.log(current_pos);
+	                end_pos = last;
+	                console.log(end_pos);
+	                var request = {
+	                    origin:current_pos,
+	                    destination:end_pos,
+	                    waypoints: wayPointArray,
+	                    optimizeWaypoints: true,
+	                    travelMode: google.maps.TravelMode.DRIVING,
+	                    avoidHighways: true
+	                };
+	                var directionsService = new google.maps.DirectionsService(); // Service de calcul d'itinéraire
+	
+	                console.log('avant directionsService');
+	                directionsService.route(request, function(result, status) {
+	
+	                    console.log('dans directionsService');
+	                    if (status == google.maps.DirectionsStatus.OK) {
+	                        console.log('dans if directionsService');
+	                        directionsDisplay.setDirections(result);
+	                        directionsDisplay.setMap(map);
+	                        directionsDisplay.setOptions( { suppressMarkers: true } );
+	                    }
+	                });
+			        
+                }
+            })
+        };
+
+    </script>
+
+
+{% endblock %}
+{% block form %}
+{{ parent() }}
+
+    <h1>Map</h1>
+
+    <div id="gmap" style="width:100%; height:450px"></div>
+{% endblock %}

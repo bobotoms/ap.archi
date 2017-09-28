@@ -1,0 +1,351 @@
+/* ----------------------------------------------------------------
+  Page Produit
+-----------------------------------------------------------------*/
+
+ul.hotel-tabs {
+  list-style-type: none;
+}
+ul.hotel-tabs li {
+  float: left;
+  margin: 20px;
+}
+ul.hotel-tabs li > a > div.tab-hotel {
+  border: 2px solid #eee;
+  /*text-align: center;*/
+}
+div.tab-hotel-photo {
+  /*border-bottom: none;*/
+}
+div.tab-hotel-text {
+  /*border-top: none;*/
+  padding: 10px;
+}
+div.tab-hotel-text > h4 {
+  /*text-align: left;*/
+  /*margin-top: 10px;*/
+  margin: 0;
+  color: #444;
+}
+.tabs > ul > li.ui-tabs-active > a > div {
+  border-color: #d73d5a;
+}
+.tabs > ul > li.ui-tabs-active > a > div  > div > h4 {
+  /*border-color: #d73d5a;*/
+  /*color: #d73d5a;*/
+}
+ul.hotel-tabs li > a:hover div.tab-hotel-text i {
+  color: #d73d5a;
+}
+
+
+
+table.jour-par-jour > tbody > tr > td {
+  border:none;
+  vertical-align: middle;  
+}
+table.jour-par-jour > tbody > tr > td.cel-jour {
+  text-align: center;
+  
+}
+table.jour-par-jour > tbody > tr > td > p {
+  margin: 0;
+  
+}
+table.jour-par-jour > tbody > tr > td > p.jour {
+  border: 1px solid #ddd;
+  width: 50px;
+  height: 50px;
+  margin: 5px 10px;
+  font-family: 'robotoregular', sans-serif;
+  font-weight: bold;
+  color: #d73d5a;
+  text-transform: uppercase;
+
+}
+#content p.jour 
+{ 
+  /*line-height: 1em; */
+  font-size: 0.9em;
+  color: #cc3d5a;
+}
+#content p.jour span
+{ 
+  font-size: 1.2em;
+}
+
+
+.hebergements > div {
+  /*height: 200px;*/
+  /*background-color: #EEE;*/
+  padding: 0;
+}
+.hebergements > div img
+{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.block-full-width
+{
+  border: 1px solid #eee;
+  /*height: 200px;*/
+  margin-bottom: 10px;
+}
+
+.block-half-left
+{
+  border: 1px solid #eee;
+  /*height: 200px;*/
+  margin-right: 5px;
+}
+
+.block-half-right
+{
+  border: 1px solid #eee;
+  /*height: 200px;*/
+  margin-left: 5px;
+}
+
+
+
+/* Controls
+---------------------------------------------------------------------- */
+
+.controls {
+    padding: 1rem;
+/*    background: #333;
+    font-size: 0.1px;
+*/}
+
+.control-group {
+    /*display: inline-block;*/
+    margin-left: auto;
+    vertical-align: top;
+}
+
+.control {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.control__ {
+    position: relative;
+    display: inline-block;
+/*    
+    width: 2.7rem;
+    height: 2.7rem;
+*/    
+    background: #ddd;
+    cursor: pointer;
+    font-size: 0.1px;
+    color: #444;
+    transition: background 150ms;
+}
+.control-text {
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+.control-text {
+/*    width: auto;
+    font-size: .9rem;
+    padding: 0 1rem;
+    font-family: 'helvetica-neue', arial, sans-serif;
+    font-weight: 700;
+*/}
+
+.control-icon {
+  height: 130px;
+  width: 100px;
+  background-color: #ffffff;
+  background-image: url('../images/ou-partir-sprite.png');
+}
+.control-icon > span.text {
+  /*position: relative;*/
+  /*top: 100px;*/
+  vertical-align: bottom;
+}
+
+.control:not(.mixitup-control-active):hover {
+    background-color: #eee;
+}
+
+.mixitup-control-active {
+    background-color: #eee;
+}
+
+.control:first-of-type {
+    /*border-radius: 3px 0 0 3px;*/
+}
+
+.control:last-of-type {
+    border-radius: 0 3px 3px 0;
+}
+
+.control-icon.cruise {
+  background-position: left top;
+}
+.control-icon.control-cruise:not(.mixitup-control-active):hover,
+.control-icon.control-cruise.mixitup-control-active
+{
+  background-color: #9dd3d2;
+  background-position: 0px -130px;
+
+}
+
+/* Target Elements
+---------------------------------------------------------------------- */
+
+.spot {
+  width: 100px;
+  height: 200px;
+  border: 3px solid #ccc;
+}
+
+
+.mix,
+.gap {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.mix {
+    background: #fff;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.mix:before {
+    content: '';
+    display: inline-block;
+    padding-top: 100%;
+}
+
+.mix.green {
+    color: #91e6c7;
+}
+
+.mix.pink {
+    color: #d595aa;
+}
+
+.mix.blue {
+    color: #5ecdde;
+}
+
+.mix:after {
+    content: '';
+    position: absolute;
+}
+
+.mix.square:after,
+.mix.circle:after {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    background: currentColor;
+    border-radius: 3px;
+}
+
+.mix.circle:after {
+    border-radius: 100%;
+}
+
+.mix.triangle:after {
+    font-size: 3vw;
+    border: 3em solid transparent;
+    border-bottom: 5em solid currentColor;
+    border-top: 0;
+    left: calc(50% - 3em);
+    top: calc(50% - 3em);
+}
+
+.mix.medium:after {
+    transform: scale(.75);
+}
+
+.mix.small:after {
+    transform: scale(.5);
+}
+
+/* Grid Breakpoints
+---------------------------------------------------------------------- */
+
+/* 2 Columns */
+
+.mix,
+.gap {
+    width: calc(100%/2 - (((2 - 1) * 1rem) / 2));
+}
+
+/* 3 Columns */
+
+@media screen and (min-width: 541px) {
+    .mix,
+    .gap {
+        width: calc(100%/3 - (((3 - 1) * 1rem) / 3));
+    }
+
+    .mix.triangle:after {
+        font-size: 2vw;
+    }
+}
+
+/* 4 Columns */
+
+@media screen and (min-width: 961px) {
+    .mix,
+    .gap {
+        width: calc(100%/4 - (((4 - 1) * 1rem) / 4));
+    }
+
+    .mix.triangle:after {
+        font-size: 1.5vw;
+    }
+}
+
+/* 5 Columns */
+
+@media screen and (min-width: 1281px) {
+    .mix,
+    .gap {
+        width: calc(100%/5 - (((5 - 1) * 1rem) / 5));
+    }
+
+    .mix.triangle:after {
+        font-size: 1.25vw;
+    }
+}
+
+/* 6 Columns */
+
+@media screen and (min-width: 1401px) {
+    .mix,
+    .gap {
+        width: calc(100%/6 - (((6 - 1) * 1rem) / 6));
+    }
+
+    .mix.triangle:after {
+        font-size: 1vw;
+    }
+}
+
+

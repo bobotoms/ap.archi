@@ -1,0 +1,38 @@
+<div class="fslider" data-easing="easeInQuad">
+	<div class="flexslider">
+		<div class="slider-wrap">
+            {% for slide in slides %}
+                {% if slide.type == 'image' %}
+					<!-- Slide Type : Photo + Texte Prinicpal + Légende/Crédits -->
+					<div class="slide" data-thumb="/apArchi/web/{% path slide.picture, 'small' %}">
+						<a href="{# path('species', {'slug':species.slug}) #}">
+							<img src="/apArchi/web/{% path slide.picture, 'reference' %}" alt="Slide 2">
+							<div class="flex-caption slider-caption-bg slider-caption-top-left">{{ slide.caption }}</div>
+						</a>
+					</div>
+                {% else %}
+					<!-- Slide Type : Vidéo -->
+					<div class="swiper-slide dark">
+						<div class="container clearfix">
+							<div class="slider-caption slider-caption-center">
+								<h2 data-caption-animate="fadeInUp">{{ slide.textOne }}</h2>
+								<p data-caption-animate="fadeInUp" data-caption-delay="200">{{ slide.textTwo }}</p>
+							</div>
+							<div class="legend">
+								<h2>{{ slide.caption }}</h2>
+								<p>Crédits : {{ slide.credit }}</p>
+							</div>
+						</div>
+						<div class="video-wrap">
+							<video id="slide-video" poster="/bundles/applicationsonatapage/images/videos/explore.jpg" preload="auto" loop autoplay muted>
+								<source src={% path slide.movieWebm, 'reference' %} type='video/webm' />
+								<source src={% path slide.movieMpfour, 'reference' %} type='video/mp4' />
+							</video>
+							<div class="video-overlay" style="background-color: rgba(0,0,0,0.55);"></div>
+						</div>
+					</div>
+                {% endif %}
+            {% endfor %}
+		</div>
+	</div>
+</div> <!-- end Flex Slider -->

@@ -1,0 +1,54 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+{% block javascripts %}
+
+{{ parent() }}
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+
+	$( ".dayafterday").parent().prepend('<div style="font-size: small;">Jour : <strong>[shortcode jour]</strong><span style="color: red;">1</span><strong>[shortcode jour]</strong><br>Periode : <strong>[shortcode jour]</strong><span style="color: red;">2</span><strong>[shortcode a]</strong><span style="color: red;">6</span><strong>[shortcode jour]</strong></div>');
+	
+	var packagesIds = $.urlParam('packages_ids');
+	var idArray = packagesIds.split(';');
+	
+	for(var i=0;i<idArray.length-1;i++){
+	
+		$('.package>option[value="'+idArray[i]+'"]').attr('selected', true);
+		var optval = $('.package>option[value="'+idArray[i]+'"]').text()
+	
+		$(".package").children(".select2-choices").prepend('<li class="select2-search-choice"><div>'+optval+'</div><a href="#" class="select2-search-choice-close close-package" id="'+idArray[i]+'" tabindex="-1"></a></li>');
+
+    }
+    $( ".close-package" ).click(function() {
+        var idPackage = $(this).attr('id');
+		$('.package>option[value="'+idPackage+'"]').attr('selected', false);
+	    $(this).parent().remove();
+	});
+	
+	var type = $.urlParam('type');
+	switch(type) {
+	    case 'safari':
+			$('#select2-chosen-1').text("Safari");
+	        break;
+	    case 'cruise':
+			$('#select2-chosen-1').text("Croisière");
+	        break;
+	    case 'travel':
+			$('#select2-chosen-1').text("Séjour");
+	        break;
+	    default:
+	        $('#select2-chosen-1').text("Erreur Merci de modifer votre choix");
+	}
+	$('.typeproduct>option[value="'+type+'"]').attr('selected', true);
+     //   $('#typeproduct').val(textbtn);
+}); 
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	return results[1] || 0;
+}
+</script>
+{% endblock %}
+  
+
+
+

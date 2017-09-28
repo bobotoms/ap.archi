@@ -1,0 +1,31 @@
+back_office_homepage:
+    path:     /
+    defaults: { _controller: BackOfficeBundle:Default:index }
+ 
+admin_area:
+    resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
+    prefix: /admin
+
+back_admin:
+    path:     /back_admin
+    defaults: { _controller: SonataAdminBundle:Core:dashboard }
+
+prod_search:
+    pattern:  /prod_search/{production}
+    defaults: { _controller: BackOfficeBundle:Default:productionSearch}
+
+marker_search:
+    pattern:  /marker_search/{markers}
+    defaults: { _controller: BackOfficeBundle:Default:markerSearch}
+
+nameiti_search:
+    pattern:  /nameiti_search/{idIti}
+    defaults: { _controller: BackOfficeBundle:Default:nameItiSearch}
+
+option_search:
+    pattern:  /option_search/{optionNb}/{optionVal}
+    defaults: { _controller: BackOfficeBundle:Default:optionSearch}
+    
+option_check:
+    pattern:  /option_check/{idOption}
+    defaults: { _controller: BackOfficeBundle:Default:optionCheck}

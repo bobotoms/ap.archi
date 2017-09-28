@@ -1,0 +1,98 @@
+{% extends "SonataAdminBundle:CRUD:edit.html.twig" %}
+{% block javascripts %}
+
+{{ parent() }}
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+	
+	if (($('.leftCat').val()!='') && ($('.topCat').val()!='') )
+    {
+        Calc();
+    }
+    
+	if ($('.subZone option:selected').val()=='non')
+    {
+        $('.linkCat').parent().parent().show();
+        $('.linkCat').prop('required',true);
+        $('.subDestination').parent().parent().hide();
+    }
+    else
+    {
+        $('.linkCat').parent().parent().hide();
+        $('.linkCat').prop('required',false);
+        $('.subDestination').parent().parent().show();
+    }
+});
+
+</script>
+<script type="text/javascript">
+    function subZoneLink() {
+        if ($('.subZone option:selected').val()=='non')
+        {
+            $('.linkCat').parent().parent().show();
+            $('.linkCat').prop('required',true);
+            $('.subDestination').parent().parent().hide();
+        }
+        else
+        {
+            $('.linkCat').parent().parent().hide();
+            $('.linkCat').prop('required',false);
+            $('.subDestination').parent().parent().show();
+        }
+    };
+
+</script> 
+<script type="text/javascript">
+    function CalcTop(){
+        var top = $('.topCat').val();
+        document.getElementById("map-item").style.top = top+'px';
+    }
+
+</script>
+<script type="text/javascript">
+    function CalcLeft(){
+    
+        var left = $('.leftCat').val();
+        document.getElementById("map-item").style.left = left+'px';
+    }
+
+</script>
+<script type="text/javascript">
+    function Calc(){
+        var top = $('.topCat').val();
+        document.getElementById("map-item").style.top = top+'px';
+        var left =  $('.leftCat').val();
+        document.getElementById("map-item").style.left = left+'px';
+    }
+
+</script>
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+        <--! <link rel="stylesheet" type="text/css" href="{{ asset('@BackOfficeBundle/Resources/public/css/home.css') }}" /> -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/backoffice/css/home.css') }}" />
+{% endblock %}
+
+{% block form %}
+    {{ block('parentForm') }}
+    <div class="map" id="map">
+        <strong class="map-name">
+            <span class="t-hdg1">Destination</span>
+        </strong>
+    	<p style="width:100%; text-align: center"><a style="text-align:center" href="{{  path('map_monde_mapmonde') }}" >MapMonde</a></p>
+        <ul class="map-list">
+            <li class="map-item" id="map-item" style="top:195px;left:241px">
+            </li>
+
+        </ul>
+    </div>
+{% endblock %}
+    
+    
+    
+
+
+
