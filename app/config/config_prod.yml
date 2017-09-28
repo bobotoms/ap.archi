@@ -25,3 +25,6 @@ monolog:
             level: debug
         console:
             type: console
+
+swiftmailer:
+    delivery_addresses: ['rougeulgregory@gmail.com']

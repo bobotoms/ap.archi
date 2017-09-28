@@ -614,11 +614,15 @@
     <parameter key="swiftmailer.spool.default.memory.path">C:\wamp\www\Aparchi\app\cache\dev/swiftmailer/spool/default</parameter>
     <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
-    <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
+    <parameter key="swiftmailer.mailer.default.single_address">rougeulgregory@gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.delivery_addresses" type="collection">
+      <parameter>rougeulgregory@gmail.com</parameter>
+    </parameter>
+    <parameter key="swiftmailer.mailer.default.delivery_whitelist" type="collection"/>
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.spool.enabled">true</parameter>
     <parameter key="swiftmailer.delivery.enabled">true</parameter>
-    <parameter key="swiftmailer.single_address">null</parameter>
+    <parameter key="swiftmailer.single_address">rougeulgregory@gmail.com</parameter>
     <parameter key="swiftmailer.mailers" type="collection">
       <parameter key="default">swiftmailer.mailer.default</parameter>
     </parameter>
@@ -4022,7 +4026,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>59ccb592e22275.65655679</argument>
+            <argument>59ccd968e7fc28.22831814</argument>
           </service>
         </argument>
         <argument type="service">
@@ -4043,7 +4047,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>59ccb592e22275.65655679</argument>
+            <argument>59ccd968e7fc28.22831814</argument>
           </service>
         </argument>
       </argument>
@@ -4404,7 +4408,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>59ccb592e22275.65655679</argument>
+            <argument>59ccd968e7fc28.22831814</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -4590,7 +4594,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>59ccb592e22275.65655679</argument>
+            <argument>59ccd968e7fc28.22831814</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -13373,6 +13377,9 @@
       <call method="registerPlugin">
         <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
       </call>
+      <call method="registerPlugin">
+        <argument type="service" id="swiftmailer.plugin.redirecting"/>
+      </call>
     </service>
     <service id="swiftmailer.mailer.default.spool" class="Swift_MemorySpool"/>
     <service id="swiftmailer.mailer.default.transport.real" class="Swift_Transport_EsmtpTransport">
@@ -13431,6 +13438,13 @@
           <argument type="service" id="router.request_context" on-invalid="null"/>
         </service>
       </configurator>
+    </service>
+    <service id="swiftmailer.plugin.redirecting" class="Swift_Plugins_RedirectingPlugin">
+      <tag name="swiftmailer.default.plugin"/>
+      <argument type="collection">
+        <argument>rougeulgregory@gmail.com</argument>
+      </argument>
+      <argument type="collection"/>
     </service>
     <service id="sonata.admin.security.handler" class="Sonata\AdminBundle\Security\Handler\NoopSecurityHandler"/>
     <service id="markdown.parser" class="Knp\Bundle\MarkdownBundle\Parser\Preset\Max">

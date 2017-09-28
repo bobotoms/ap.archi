@@ -46,8 +46,15 @@ class DefaultController extends Controller
                     $email = $form->get('email')->getData();
                     $message = $form->get('message')->getData();
 
-
-                    $this->get('frontoffice.mailer')->sendContactFormEmail($name, $email, $message);
+                    $message = \Swift_Message::newInstance()
+                        ->setSubject('Contact Ap Architecture')
+                        ->setFrom($email)
+                        ->setTo('rougeulgregory@gmail.com')
+                        ->setReplyTo($email)
+                        ->setBody($this->renderView('FrontOfficeBundle::mail.html.twig', ['message' => $message]))
+                        ->setContentType('text/html');
+                    $this->get('mailer')->send($message);
+       //             $this->get('frontoffice.mailer')->sendContactFormEmail($name, $email, $message);
                     $response->setStatusCode(200);
                 }
             }

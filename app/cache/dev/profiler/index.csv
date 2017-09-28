@@ -149,3 +149,12 @@ c37702,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular
 f51108,::1,GET,http://localhost/apArchi/web/app_dev.php/accueil,1506589571,,200
 fa58f4,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular-webfont.woff,1506589573,,404
 4ed13f,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular-webfont.ttf,1506589575,,404
+8ed190,::1,GET,http://localhost/apArchi/web/app_dev.php/accueil,1506594851,3e0000,200
+3e0000,::1,POST,http://localhost/apArchi/web/app_dev.php/accueil,1506594851,,500
+6514c3,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular-webfont.woff,1506597233,,404
+16a882,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular-webfont.ttf,1506597235,,404
+c4e682,::1,GET,http://localhost/apArchi/web/app_dev.php/accueil,1506597272,e58f49,200
+e58f49,::1,POST,http://localhost/apArchi/web/app_dev.php/accueil,1506597272,,500
+56b20e,::1,POST,http://localhost/apArchi/web/app_dev.php/accueil,1506597307,,200
+c0192c,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular-webfont.woff,1506597309,,404
+4d54d6,::1,GET,http://localhost/apArchi/web/app_dev.php/yanonekaffeesatz-regular-webfont.ttf,1506597311,,404
