@@ -50,6 +50,10 @@ class FirstAdmin extends AbstractAdmin
                     '-', /*'Image',*/ 'Link', 'Unlink', /*'Table'*/),
                 2 => array('Maximize', 'Source')
             )
+        ))
+        ->add('picture', 'sonata_type_model_list', array(
+            'label' => 'Photo',
+            'required' => false
         ));
 	}
 	

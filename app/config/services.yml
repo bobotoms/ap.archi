@@ -11,7 +11,7 @@ services:
         class: BackOfficeBundle\Admin\FirstAdmin
         arguments: [~, BackOfficeBundle\Entity\First, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Ap Architecture", label: L'agencee, icon: "<i class=\"fa fa-map\"></i>" }
+            - { name: sonata.admin, manager_type: orm, group: "Ap Architecture", label: L'agence, icon: "<i class=\"fa fa-map\"></i>" }
     admin.second:
         class: BackOfficeBundle\Admin\SecondAdmin
         arguments: [~, BackOfficeBundle\Entity\Second, ~]

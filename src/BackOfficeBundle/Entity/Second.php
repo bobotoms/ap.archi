@@ -4,6 +4,7 @@ namespace BackOfficeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sonata\MediaBundle\Model\Media;
 
 /**
  * Second
@@ -36,25 +37,34 @@ class Second
     protected $intro;
 
     /**
-     * @var string
+     * @var Media
      *
-     * @ORM\Column(name="first_text", type="text", length=2000, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="picture_one_id", referencedColumnName="id")
+     * })
      */
-    protected $firstText;
+    private $pictureOne;
 
     /**
-     * @var string
+     * @var Media
      *
-     * @ORM\Column(name="second_text", type="text", length=2000, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="picture_two_id", referencedColumnName="id")
+     * })
      */
-    protected $secondText;
+    private $pictureTwo;
 
     /**
-     * @var string
+     * @var Media
      *
-     * @ORM\Column(name="third_text", type="text", length=2000, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="picture_three_id", referencedColumnName="id")
+     * })
      */
-    protected $thirdText;
+    private $pictureThree;
 
     public function setId($id)
     {
@@ -91,29 +101,34 @@ class Second
         $this->firstText = $firstText;
     }
 
-    public function getFirstText()
+    public function setPictureOne($pictureOne)
     {
-        return $this->firstText;
+        $this->pictureOne = $pictureOne;
     }
 
-    public function setSecondText($secondText)
+    public function getPictureOne()
     {
-        $this->secondText = $secondText;
+        return $this->pictureOne;
     }
 
-    public function getSecondText()
+    public function setPictureTwo($pictureTwo)
     {
-        return $this->secondText;
+        $this->pictureTwo = $pictureTwo;
     }
 
-    public function setThirdText($thirdText)
+    public function getPictureTwo()
     {
-        $this->thirdText = $thirdText;
+        return $this->pictureTwo;
     }
 
-    public function getThirdText()
+    public function setPictureThree($pictureThree)
     {
-        return $this->thirdText;
+        $this->pictureThree = $pictureThree;
+    }
+
+    public function getPictureThree()
+    {
+        return $this->pictureThree;
     }
 
     public function __toString() {

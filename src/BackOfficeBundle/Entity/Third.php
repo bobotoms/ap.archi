@@ -4,6 +4,7 @@ namespace BackOfficeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sonata\MediaBundle\Model\Media;
 
 /**
  * Third
@@ -36,25 +37,14 @@ class Third
     protected $intro;
 
     /**
-     * @var string
+     * @var Media
      *
-     * @ORM\Column(name="first_text", type="text", length=2000, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="picture_id", referencedColumnName="id")
+     * })
      */
-    protected $firstText;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="second_text", type="text", length=2000, nullable=false)
-     */
-    protected $secondText;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="third_text", type="text", length=2000, nullable=false)
-     */
-    protected $thirdText;
+    private $picture;
 
     public function setId($id)
     {
@@ -86,34 +76,14 @@ class Third
         return $this->intro;
     }
 
-    public function setFirstText($firstText)
+    public function setPicture($picture)
     {
-        $this->firstText = $firstText;
+        $this->picture = $picture;
     }
 
-    public function getFirstText()
+    public function getPicture()
     {
-        return $this->firstText;
-    }
-
-    public function setSecondText($secondText)
-    {
-        $this->secondText = $secondText;
-    }
-
-    public function getSecondText()
-    {
-        return $this->secondText;
-    }
-
-    public function setThirdText($thirdText)
-    {
-        $this->thirdText = $thirdText;
-    }
-
-    public function getThirdText()
-    {
-        return $this->thirdText;
+        return $this->picture;
     }
 
     public function __toString() {

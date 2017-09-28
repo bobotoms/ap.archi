@@ -49,6 +49,16 @@ class First
 	 */
 	protected $description;
 
+    /**
+     * @var Media
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumns({
+     *     @ORM\JoinColumn(name="picture_id", referencedColumnName="id")
+     * })
+     */
+    private $picture;
+
 	public function setId($id)
 	{
 		$this->id = $id;
@@ -98,6 +108,16 @@ class First
 	{
 		return $this->intro;
 	}
+
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
+    public function getPicture()
+    {
+        return $this->picture;
+    }
     
 	public function __toString() {
 		$title= $this->title;

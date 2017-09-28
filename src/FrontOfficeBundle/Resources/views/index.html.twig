@@ -37,7 +37,9 @@
 
 					<div class="col-md-6">
 
-						<img src="">
+                        {% if first.picture %}
+							<img src="/apArchi/web/{% path first.picture, 'reference'%}">
+                        {% endif %}
 
 					</div>
 
@@ -56,15 +58,21 @@
 					<br/>
 
 					<div class="col-md-4">
-						<p>{{ second.firstText|raw }}</p>
+                        {% if second.pictureOne %}
+							<img src="/apArchi/web/{% path second.pictureOne, 'reference'%}">
+                        {% endif %}
 					</div>
 
 					<div class="col-md-4">
-						<p>{{ second.secondText|raw }}</p>
+                        {% if second.pictureTwo %}
+							<img src="/apArchi/web/{% path second.pictureTwo, 'reference'%}">
+                        {% endif %}
 					</div>
 
 					<div class="col-md-4">
-						<p>{{ second.thirdText|raw }}</p>
+                        {% if second.pictureThree %}
+							<img src="/apArchi/web/{% path second.pictureThree, 'reference'%}">
+                        {% endif %}
 					</div>
 
 				</div>
@@ -79,19 +87,14 @@
 
 					<br/>
 
-					<div class="col-md-4">
-						<p>{{ third.firstText|raw }}</p>
+					<div class="col-md-12">
+
+					{% if third.picture %}
+						<img src="/apArchi/web/{% path third.picture, 'reference'%}">
+					{% endif %}
 					</div>
 
-					<div class="col-md-4">
-						<p>{{ third.secondText|raw }}</p>
-					</div>
-
-					<div class="col-md-4">
-						<p>{{ third.thirdText|raw }}</p>
-					</div>
-
-				</div>
+		</div>
 
 				<div class="row filters" id="realisations" style="background-color:#f2f2f2; background-size: cover;">
 

@@ -35,44 +35,18 @@ class SecondAdmin extends AbstractAdmin
                     2 => array('Maximize', 'Source')
                 )
             ))
-            ->add('firstText', 'sonata_simple_formatter_type', array(
-                'label' => 'Text 1',
-                'format' => 'richhtml',
-                'ckeditor_toolbar_icons' => array(
-                    1 => array('Bold', 'Italic', 'Underline',
-                        '-', 'Cut', 'Copy', 'Paste', 'PasteText',/* 'PasteFromWord',*/
-                        '-', 'Undo', 'Redo',
-                        '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent',
-                        '-', 'Blockquote',
-                        '-', /*'Image',*/ 'Link', 'Unlink', /*'Table'*/),
-                    2 => array('Maximize', 'Source')
-                )
+
+            ->add('pictureOne', 'sonata_type_model_list', array(
+                'label' => 'Photo 1',
+                'required' => false
             ))
-            ->add('secondText', 'sonata_simple_formatter_type', array(
-                'label' => 'Text 2',
-                'format' => 'richhtml',
-                'ckeditor_toolbar_icons' => array(
-                    1 => array('Bold', 'Italic', 'Underline',
-                        '-', 'Cut', 'Copy', 'Paste', 'PasteText',/* 'PasteFromWord',*/
-                        '-', 'Undo', 'Redo',
-                        '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent',
-                        '-', 'Blockquote',
-                        '-', /*'Image',*/ 'Link', 'Unlink', /*'Table'*/),
-                    2 => array('Maximize', 'Source')
-                )
+            ->add('pictureTwo', 'sonata_type_model_list', array(
+                'label' => 'Photo 2',
+                'required' => false
             ))
-            ->add('thirdText', 'sonata_simple_formatter_type', array(
-                'label' => 'Text 3',
-                'format' => 'richhtml',
-                'ckeditor_toolbar_icons' => array(
-                    1 => array('Bold', 'Italic', 'Underline',
-                        '-', 'Cut', 'Copy', 'Paste', 'PasteText',/* 'PasteFromWord',*/
-                        '-', 'Undo', 'Redo',
-                        '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent',
-                        '-', 'Blockquote',
-                        '-', /*'Image',*/ 'Link', 'Unlink', /*'Table'*/),
-                    2 => array('Maximize', 'Source')
-                )
+            ->add('pictureThree', 'sonata_type_model_list', array(
+                'label' => 'Photo 3',
+                'required' => false
             ));
 	}
 	
@@ -86,11 +60,7 @@ class SecondAdmin extends AbstractAdmin
 	{
 		$listMapper->addIdentifier('title', null, array(
 				'label' => 'Titre'))
-            ->add('firstText', null, array(
-                'label' => 'Text 1'))
-            ->add('secondText', null, array(
-                'label' => 'Text 2'))
-            ->add('thirdText', null, array(
-                'label' => 'Text 3'));
+            ->add('intro', null, array(
+                'label' => 'Intro'));
 	}
 }
